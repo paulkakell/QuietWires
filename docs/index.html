@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Quiet Wires</title>
+  <meta name="description" content="Quiet Wires, a choice driven ASCII text adventure." />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header class="top">
+      <div class="brand">Quiet Wires</div>
+      <div class="controls">
+        <button id="btnNew" type="button">New</button>
+        <button id="btnSave" type="button">Save</button>
+        <button id="btnLoad" type="button">Load</button>
+        <button id="btnExport" type="button">Export</button>
+        <button id="btnImport" type="button">Import</button>
+      </div>
+    </header>
+
+    <section class="panel">
+      <div id="screen" class="screen" role="log" aria-live="polite"></div>
+      <div class="divider"></div>
+      <div class="choicesTitle">Choices</div>
+      <ol id="choices" class="choices"></ol>
+      <div class="hint">Tip: press 1 to 9 to choose.</div>
+    </section>
+
+    <footer class="foot">
+      <div id="status" class="status"></div>
+    </footer>
+  </main>
+
+  <script src="./game.js"></script>
+</body>
+</html>

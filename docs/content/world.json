@@ -1,0 +1,149 @@
+{
+  "startRoomId": "dock_01",
+  "rooms": {
+    "dock_01": {
+      "title": "The Rust Dock",
+      "text": [
+        "Cold steel. Old salt. A lantern swings with a tired rhythm.",
+        "A narrow gangway leads inland. A crate sits half-open."
+      ],
+      "onEnter": { "setFlags": ["visited:dock_01"] },
+      "choices": [
+        { "label": "Walk the gangway toward the city lights", "to": "street_01" },
+        {
+          "label": "Search the half-open crate",
+          "effects": { "addItems": ["tin_key"] },
+          "once": true,
+          "to": "dock_01",
+          "log": "You find a small tin key wrapped in oilcloth."
+        },
+        {
+          "label": "Open the locked maintenance hatch",
+          "to": "hatch_01",
+          "requires": ["hasItem:tin_key"],
+          "lockText": "The hatch will not budge. You need a key."
+        }
+      ]
+    },
+
+    "street_01": {
+      "title": "Quayside Street",
+      "text": [
+        "Footsteps fade into fog. A sign reads: NORTH MARKET, SOUTH YARD.",
+        "A watchman leans against a post, pretending not to watch you."
+      ],
+      "choices": [
+        { "label": "Head north to the market", "to": "market_01" },
+        { "label": "Head south to the yard", "to": "yard_01" },
+        { "label": "Return to the dock", "to": "dock_01" },
+        {
+          "label": "Ask the watchman about the hatch",
+          "to": "street_01",
+          "effects": { "setFlags": ["hint:hatch"] },
+          "log": "He mutters: 'Old tunnels. Bad air. If you go, go prepared.'"
+        }
+      ]
+    },
+
+    "hatch_01": {
+      "title": "Maintenance Tunnel",
+      "text": [
+        "The air tastes like pennies. Water drips in the dark.",
+        "A faint draft comes from deeper in."
+      ],
+      "choices": [
+        {
+          "label": "Go deeper into the tunnel",
+          "to": "tunnel_02",
+          "requires": ["flag:hint:hatch"],
+          "lockText": "You hesitate. You do not know what you are stepping into."
+        },
+        { "label": "Climb back to the dock", "to": "dock_01" }
+      ]
+    },
+
+    "tunnel_02": {
+      "title": "The Draft",
+      "text": [
+        "The tunnel opens into a bricked archway with a carved emblem.",
+        "A switch box sits beside the arch, marked POWER."
+      ],
+      "choices": [
+        {
+          "label": "Flip the power switch",
+          "to": "tunnel_02",
+          "effects": { "setFlags": ["power:on"] },
+          "once": true,
+          "log": "A low hum begins. Somewhere above, lights wake up."
+        },
+        {
+          "label": "Enter the archway",
+          "to": "vault_01",
+          "requires": ["flag:power:on"],
+          "lockText": "The archway stays sealed. It needs power."
+        },
+        { "label": "Return to the tunnel entrance", "to": "hatch_01" }
+      ]
+    },
+
+    "vault_01": {
+      "title": "The Quiet Vault",
+      "text": [
+        "A room of old machines. A terminal blinks: ACCESS GRANTED.",
+        "You feel like the city just became larger than you thought."
+      ],
+      "choices": [
+        {
+          "label": "Take the terminal printout",
+          "to": "vault_01",
+          "effects": { "addItems": ["printout"] },
+          "once": true,
+          "log": "The printout lists district names you have never heard."
+        },
+        { "label": "Return to the archway", "to": "tunnel_02" }
+      ]
+    },
+
+    "market_01": {
+      "title": "North Market",
+      "text": [
+        "Canvas awnings. Hot tea. Quiet deals.",
+        "A vendor offers a small lamp that smells of fresh oil."
+      ],
+      "choices": [
+        {
+          "label": "Buy the oil lamp (trade the tin key)",
+          "to": "market_01",
+          "requires": ["hasItem:tin_key"],
+          "effects": { "removeItems": ["tin_key"], "addItems": ["oil_lamp"] },
+          "once": true,
+          "log": "You trade the key for an oil lamp. The vendor will not meet your eyes."
+        },
+        { "label": "Return to Quayside Street", "to": "street_01" }
+      ]
+    },
+
+    "yard_01": {
+      "title": "South Yard",
+      "text": [
+        "Broken crates and chain. A dog barks at shadows.",
+        "You spot a narrow path behind stacked pallets."
+      ],
+      "choices": [
+        { "label": "Slip behind the pallets", "to": "yard_02", "effects": { "setFlags": ["route:yard"] } },
+        { "label": "Return to Quayside Street", "to": "street_01" }
+      ]
+    },
+
+    "yard_02": {
+      "title": "Hidden Cutthrough",
+      "text": [
+        "A cramped lane. Someone painted a symbol that matches the tunnel emblem.",
+        "This city has more than one way in."
+      ],
+      "choices": [
+        { "label": "Head back", "to": "yard_01" }
+      ]
+    }
+  }
+}

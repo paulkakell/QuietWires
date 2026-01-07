@@ -1,0 +1,128 @@
+:root{
+  --bg:#0b0f14;
+  --fg:#d7e1ee;
+  --muted:#93a4b7;
+  --panel:#0f1620;
+  --border:#223043;
+  --accent:#9bdcff;
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--fg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.wrap{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 18px;
+}
+
+.top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom: 14px;
+}
+
+.brand{
+  font-weight:700;
+  letter-spacing: 0.5px;
+}
+
+.controls{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+button{
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--fg);
+  padding: 7px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+button:hover{ border-color: var(--accent); }
+
+.panel{
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.screen{
+  min-height: 340px;
+  max-height: 420px;
+  overflow:auto;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(0,0,0,0.18);
+  line-height: 1.35;
+  white-space: pre-wrap;
+}
+
+.line{ margin: 0 0 10px 0; }
+.line .meta{ color: var(--muted); }
+
+.divider{
+  height: 1px;
+  background: var(--border);
+  margin: 12px 0;
+}
+
+.choicesTitle{
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.choices{
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 8px;
+}
+
+.choiceBtn{
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,0.14);
+  color: var(--fg);
+  cursor: pointer;
+}
+.choiceBtn:hover{ border-color: var(--accent); }
+
+.choiceBtn[disabled]{
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.hint{
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.foot{
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.status{
+  display:flex;
+  flex-wrap:wrap;
+  gap: 14px;
+}
